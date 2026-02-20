@@ -85,7 +85,8 @@
 
         /* --- INTERFACE --- */
         .interface-side {
-            padding: 4rem;
+            padding: 2rem 4rem;
+            /* Reducido de 4rem */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -96,13 +97,19 @@
             background: var(--glass-deep);
             backdrop-filter: blur(40px);
             border: 1px solid var(--border-neon);
-            border-radius: 48px;
-            padding: 3.5rem;
+            border-radius: 40px;
+            /* Un poco menos redondeado */
+            padding: 2.5rem;
+            /* Reducido de 3.5rem */
             position: relative;
             box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 1);
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem;
+            /* Reducido de 2rem */
+            max-height: 90vh;
+            /* Aseguramos que no se pase de la pantalla */
+            overflow-y: auto;
         }
 
         .neural-card::before {
@@ -118,12 +125,12 @@
         }
 
         .logo-title {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 800;
             letter-spacing: -2px;
             color: #ffffff;
-            margin-top: 8rem;
-            /* Título mucho más abajo */
+            margin-top: 2rem;
+            /* Reducido para que entre en pantalla */
             margin-bottom: 0.5rem;
             display: flex;
             align-items: baseline;
@@ -210,14 +217,16 @@
         }
 
         .display-area {
-            min-height: 250px;
+            min-height: 180px;
+            /* Reducido de 250px */
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
         }
 
         #response {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            /* Reducido de 1.8rem */
             font-weight: 600;
             line-height: 1.3;
             letter-spacing: -0.5px;
