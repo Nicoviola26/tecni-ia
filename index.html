@@ -335,6 +335,100 @@
                 height: 25px;
             }
         }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 1024px) {
+            .main-wrapper {
+                grid-template-columns: 1fr;
+                height: auto;
+                min-height: 100vh;
+                gap: 1.5rem;
+                padding: 1rem;
+                overflow-y: auto;
+            }
+
+            body {
+                overflow-y: auto;
+            }
+
+            .neural-card {
+                max-height: none;
+                padding: 2rem;
+            }
+
+            .stage-side {
+                order: 1;
+                /* El robot arriba en tablet/celular */
+                min-height: 400px;
+            }
+
+            .interface-side {
+                order: 2;
+                margin-bottom: 60px;
+                /* Espacio para el footer */
+            }
+
+            .svg-robot {
+                max-width: 280px;
+            }
+
+            .logo-title {
+                font-size: 2.5rem;
+                margin-top: 1rem;
+            }
+
+            #response {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-wrapper {
+                padding: 0.8rem;
+                gap: 1rem;
+            }
+
+            .neural-card {
+                padding: 1.5rem;
+                border-radius: 30px;
+            }
+
+            .stage-side {
+                min-height: 320px;
+            }
+
+            .svg-robot {
+                max-width: 220px;
+            }
+
+            .logo-title {
+                font-size: 2.2rem;
+                justify-content: center;
+                /* Centrar título en móvil */
+            }
+
+            #response {
+                font-size: 1.1rem;
+            }
+
+            .input-bar {
+                padding: 0.4rem;
+                border-radius: 16px;
+            }
+
+            #text-input {
+                font-size: 0.9rem;
+            }
+
+            #send-btn {
+                padding: 0 0.5rem;
+            }
+
+            footer {
+                font-size: 0.55rem;
+                bottom: 5px;
+            }
+        }
     </style>
 </head>
 
