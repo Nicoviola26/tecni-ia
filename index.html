@@ -468,7 +468,30 @@
     </footer>
 
     <script>
-        const GROQ_API_KEY = "";
+        // Sistema de clave inteligente para evitar bloqueos de GitHub
+        let GROQ_API_KEY = localStorage.getItem('tecni_key') || "";
+
+        function checkApiKey() {
+            if (!GROQ_API_KEY) {
+                const pass = prompt("Por seguridad, pegá tu clave de Groq para activar a Tecni (se guarda solo en tu equipo):");
+                if (pass) {
+                    localStorage.setItem('tecni_key', pass);
+                    GROQ_API_KEY = pass;
+                    location.reload();
+                }
+            }
+        }
+
+        // Si tocás el logo 5 veces se borra la clave (por si querés cambiarla)
+        let logoClicks = 0;
+        document.querySelector('.logo-title').onclick = () => {
+            logoClicks++;
+            if (logoClicks >= 5) {
+                localStorage.removeItem('tecni_key');
+                alert("Clave borrada. Recargá para poner una nueva.");
+                location.reload();
+            }
+        };
 
         const micBtn = document.getElementById('mic-btn');
         const transcriptionDiv = document.getElementById('transcription');
@@ -482,6 +505,7 @@
         let recognition;
 
         async function askAI(prompt) {
+            if (!GROQ_API_KEY) return "Hola! Para hablar, necesito que configures mi clave haciendo clic en el botón de enviar.";
             const messages = [
                 { role: "system", content: "Sos Tecni, de Munitech Santa Fe. Alegre, voseo santafesino, breve (2 oraciones), punto final." },
                 ...chatHistory,
@@ -525,6 +549,8 @@
         }
 
         async function processInput(input) {
+            checkApiKey();
+            if (!GROQ_API_KEY) return;
             responseDiv.innerText = "...";
             const res = await askAI(input);
             speak(res);
