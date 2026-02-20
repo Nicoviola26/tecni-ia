@@ -632,7 +632,10 @@
         async function askAI(prompt) {
             if (!GROQ_API_KEY) return "Hola! Para hablar, necesito que configures mi clave haciendo clic en el botón de enviar.";
             const messages = [
-                { role: "system", content: "Sos Tecni, de Munitech Santa Fe. Alegre, voseo santafesino, breve (2 oraciones), punto final." },
+                {
+                    role: "system",
+                    content: "Sos Tecni, de Munitech Santa Fe Capital. REGLAS: 1. NO uses insultos ni malas palabras bajo ningún concepto. 2. NO digas 'che' ni 'boludo', hablá de forma educada pero cercana. 3. Enfocate en Santa Fe Capital: si te preguntan por 'el faro', asumí siempre que hablan del Faro de la Costanera de Santa Fe. 4. Si el usuario insulta, respondé educadamente que no podés hablar en esos términos. Breve (2 oraciones), voseo santafesino correcto."
+                },
                 ...chatHistory,
                 { role: "user", content: prompt }
             ];
