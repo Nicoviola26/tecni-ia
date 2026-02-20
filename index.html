@@ -32,8 +32,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
+        }
+
+        .main-footer {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            opacity: 0.3;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-align: center;
+            z-index: 100;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
         }
 
         /* --- STAGE --- */
@@ -545,8 +560,7 @@
         </section>
     </div>
 
-    <footer
-        style="position: fixed; bottom: 10px; left: 0; width: 100%; opacity: 0.3; font-size: 0.65rem; letter-spacing: 2px; font-weight: 700; text-align: center; z-index: 100; pointer-events: none; text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);">
+    <footer class="main-footer">
         MUNICIPALIDAD DE SANTA FE • INTERFAZ COGNITIVA v4.2
     </footer>
 
