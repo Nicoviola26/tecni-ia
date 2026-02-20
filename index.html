@@ -358,90 +358,107 @@
                 height: auto;
                 min-height: 100vh;
                 gap: 1.5rem;
-                padding: 1rem;
-                overflow-y: auto;
+                padding: 1.5rem;
+                padding-bottom: 100px;
+                overflow-x: hidden;
             }
 
             body {
                 overflow-y: auto;
+                align-items: flex-start;
             }
 
             .neural-card {
+                height: auto;
+                min-height: auto;
                 max-height: none;
                 padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border-radius: 35px;
             }
 
             .stage-side {
                 order: 1;
-                /* El robot arriba en tablet/celular */
-                min-height: 400px;
+                min-height: auto;
+                margin-top: 1rem;
             }
 
             .interface-side {
                 order: 2;
-                margin-bottom: 60px;
-                /* Espacio para el footer */
+                padding: 0;
             }
 
             .svg-robot {
-                max-width: 280px;
+                max-width: 180px;
+                margin: 20px auto;
             }
 
             .logo-title {
                 font-size: 2.5rem;
-                margin-top: 1rem;
+                margin-top: 0.5rem;
+                justify-content: center;
             }
 
             #response {
                 font-size: 1.3rem;
+                text-align: center;
+                min-height: 120px;
+            }
+
+            .accent-line {
+                margin: 0 auto 1.5rem auto;
+            }
+
+            .input-bar {
+                width: 100%;
+                padding: 0.7rem;
+                border-radius: 18px;
+            }
+
+            .visualizer {
+                justify-content: center;
+            }
+
+            .main-footer {
+                position: relative;
+                margin-top: 2rem;
+                padding: 2rem 0;
+                bottom: 0;
+                background: transparent;
+                opacity: 0.4;
+                pointer-events: auto;
             }
         }
 
         @media (max-width: 600px) {
             .main-wrapper {
-                padding: 0.8rem;
+                padding: 1rem;
                 gap: 1rem;
             }
 
             .neural-card {
                 padding: 1.5rem;
-                border-radius: 30px;
-            }
-
-            .stage-side {
-                min-height: 320px;
+                border-radius: 28px;
             }
 
             .svg-robot {
-                max-width: 220px;
+                max-width: 150px;
             }
 
             .logo-title {
                 font-size: 2.2rem;
-                justify-content: center;
-                /* Centrar título en móvil */
             }
 
             #response {
-                font-size: 1.1rem;
-            }
-
-            .input-bar {
-                padding: 0.4rem;
-                border-radius: 16px;
+                font-size: 1.15rem;
+                min-height: 100px;
             }
 
             #text-input {
-                font-size: 0.9rem;
-            }
-
-            #send-btn {
-                padding: 0 0.5rem;
-            }
-
-            footer {
-                font-size: 0.55rem;
-                bottom: 5px;
+                font-size: 1rem;
             }
         }
     </style>
