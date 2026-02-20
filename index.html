@@ -346,7 +346,51 @@
         }
 
         /* --- RESPONSIVE DESIGN --- */
-        @media (max-width: 1024px) {
+
+        /* TABLET VERSION (Side-by-Side optimized) */
+        @media (min-width: 651px) and (max-width: 1180px) {
+            .main-wrapper {
+                grid-template-columns: 1fr 1.2fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+                height: 100vh;
+            }
+
+            .neural-card {
+                padding: 2rem;
+                border-radius: 35px;
+            }
+
+            .svg-robot {
+                max-width: 220px;
+                height: auto;
+            }
+
+            .logo-title {
+                font-size: 2.2rem;
+                margin-top: 0.5rem;
+            }
+
+            #response {
+                font-size: 1.2rem;
+            }
+
+            .input-bar {
+                padding: 0.5rem;
+            }
+
+            .main-footer {
+                font-size: 0.55rem;
+                opacity: 0.4;
+                bottom: 15px;
+                left: 0;
+                width: 100%;
+                position: absolute;
+            }
+        }
+
+        /* MOBILE VERSION (Stacked) */
+        @media (max-width: 650px) {
             body {
                 overflow: hidden;
                 height: 100vh;
@@ -425,7 +469,6 @@
                 font-size: 0.9rem;
                 padding: 0.4rem;
                 min-width: 0;
-                /* Important for flex items */
             }
 
             .mic-btn {
@@ -452,7 +495,7 @@
             }
         }
 
-        @media (max-height: 700px) and (max-width: 1024px) {
+        @media (max-height: 700px) and (max-width: 650px) {
             .main-wrapper {
                 grid-template-rows: 25vh 1fr;
                 gap: 0.6rem;
