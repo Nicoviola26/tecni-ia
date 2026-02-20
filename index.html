@@ -38,13 +38,13 @@
 
         /* --- STAGE --- */
         .main-wrapper {
-            width: 100vw;
+            width: 100%;
             height: 100vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            /* Mismo tamaño */
-            gap: 20px;
-            padding: 20px;
+            gap: 2rem;
+            padding: 2rem;
+            box-sizing: border-box;
             z-index: 10;
         }
 
@@ -66,8 +66,8 @@
         }
 
         .svg-robot {
-            width: 85%;
-            max-width: 380px;
+            width: 80%;
+            max-width: 320px;
             filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
             z-index: 5;
         }
@@ -90,18 +90,16 @@
             backdrop-filter: blur(40px);
             border: 1px solid var(--border-neon);
             border-radius: 40px;
-            /* Un poco menos redondeado */
             padding: 2.5rem;
-            /* Reducido de 3.5rem */
             position: relative;
             box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 1);
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            /* Reducido de 2rem */
-            max-height: 90vh;
-            /* Aseguramos que no se pase de la pantalla */
-            overflow-y: auto;
+            gap: 1rem;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
         }
 
         .neural-card::before {
@@ -355,8 +353,7 @@
     <div class="main-wrapper">
         <!-- Stage: Robot Side -->
         <section class="stage-side">
-            <div class="neural-card"
-                style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+            <div class="neural-card">
                 <div class="robot-stage">
                     <div class="floor-reflection"></div>
                     <!-- ROBOT SVG PREMIUM: EXPRESIVO Y MODERNO -->
