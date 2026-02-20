@@ -593,31 +593,7 @@
     </footer>
 
     <script>
-        // Sistema de clave inteligente para evitar bloqueos de GitHub
-        let GROQ_API_KEY = localStorage.getItem('tecni_key') || "";
-
-        function checkApiKey() {
-            if (!GROQ_API_KEY) {
-                const pass = prompt("Por seguridad, pegá tu clave de Groq para activar a Tecni (se guarda solo en tu equipo):");
-                if (pass) {
-                    localStorage.setItem('tecni_key', pass);
-                    GROQ_API_KEY = pass;
-                    location.reload();
-                }
-            }
-        }
-
-        // Si tocás el logo 5 veces se borra la clave (por si querés cambiarla)
-        let logoClicks = 0;
-        document.querySelector('.logo-title').onclick = () => {
-            logoClicks++;
-            if (logoClicks >= 5) {
-                localStorage.removeItem('tecni_key');
-                alert("Clave borrada. Recargá para poner una nueva.");
-                location.reload();
-            }
-        };
-
+        // Tecni Secure Core v2.0 - Clave centralizada en el servidor
         const micBtn = document.getElementById('mic-btn');
         const transcriptionDiv = document.getElementById('transcription');
         const responseDiv = document.getElementById('response');
@@ -630,7 +606,6 @@
         let recognition;
 
         async function askAI(prompt) {
-            if (!GROQ_API_KEY) return "Hola! Para hablar, necesito que configures mi clave haciendo clic en el botón de enviar.";
             const messages = [
                 {
                     role: "system",
@@ -640,10 +615,10 @@
                 { role: "user", content: prompt }
             ];
             try {
-                const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                const res = await fetch("/api/chat", {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${GROQ_API_KEY}` },
-                    body: JSON.stringify({ model: "llama-3.3-70b-versatile", messages, temperature: 0.8, max_tokens: 150 })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages })
                 });
                 const data = await res.json();
                 if (data.choices) {
@@ -677,8 +652,6 @@
         }
 
         async function processInput(input) {
-            checkApiKey();
-            if (!GROQ_API_KEY) return;
             responseDiv.innerText = "...";
             const res = await askAI(input);
             speak(res);
