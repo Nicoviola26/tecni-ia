@@ -347,24 +347,104 @@
 
         /* --- RESPONSIVE DESIGN --- */
 
-        /* TABLET VERSION (Cinematic & Balanced) */
-        @media (min-width: 651px) {
+        /* TABLET PORTRAIT (Full Space for Robot) */
+        @media (min-width: 651px) and (max-width: 950px) {
             .main-wrapper {
-                grid-template-columns: 42% 58%;
-                /* Robust fixed-ratio columns */
-                gap: 3rem;
-                padding: 3rem;
+                grid-template-columns: 1fr;
+                grid-template-rows: 38vh 1fr;
+                gap: 1.2rem;
+                padding: 1.2rem;
                 height: 100vh;
-                align-items: center;
-                background: radial-gradient(circle at center, #0a0b1e 0%, #02030a 100%);
+                overflow: hidden;
+                background: radial-gradient(circle at center, #0a102e 0%, #02030a 100%);
             }
 
             .stage-side,
             .interface-side {
-                height: 85vh;
-                /* Framing effect */
+                height: 100%;
                 display: flex;
                 width: 100%;
+            }
+
+            .interface-side {
+                flex-direction: column;
+            }
+
+            .stage-side .neural-card {
+                overflow: visible;
+                padding: 1.5rem;
+            }
+
+            .neural-card {
+                padding: 2.2rem;
+                border-radius: 30px;
+                box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8);
+            }
+
+            .svg-robot {
+                height: 90%;
+                width: auto;
+                max-width: 250px;
+                filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+            }
+
+            .logo-title {
+                font-size: 2.4rem;
+                margin-top: 0;
+            }
+
+            .accent-line {
+                width: 45px;
+                height: 3px;
+                margin-bottom: 1.2rem;
+            }
+
+            #response {
+                font-size: 1.35rem;
+                line-height: 1.4;
+            }
+
+            .input-bar {
+                padding: 0.8rem;
+                border-radius: 20px;
+            }
+
+            .mic-btn {
+                width: 50px;
+                height: 50px;
+            }
+
+            .main-footer {
+                font-size: 0.6rem;
+                opacity: 0.4;
+                bottom: 10px;
+                position: absolute;
+                width: 100%;
+                text-align: center;
+                letter-spacing: 2px;
+            }
+        }
+
+        /* DESKTOP & TABLET LANDSCAPE (Cinematic Side-by-Side) */
+        @media (min-width: 951px) {
+            .main-wrapper {
+                grid-template-columns: 42fr 58fr;
+                gap: 3rem;
+                padding: 3rem 4rem;
+                height: 100vh;
+                align-items: center;
+                background: radial-gradient(circle at center, #0a102e 0%, #02030a 100%);
+            }
+
+            .stage-side,
+            .interface-side {
+                height: 82vh;
+                display: flex;
+                width: 100%;
+            }
+
+            .stage-side .neural-card {
+                overflow: visible;
             }
 
             .neural-card {
@@ -376,61 +456,45 @@
                 flex-direction: column;
                 justify-content: center;
                 box-shadow: 0 50px 150px -40px rgba(0, 0, 0, 0.9);
-                overflow: hidden;
-            }
-
-            .robot-stage {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
             }
 
             .svg-robot {
-                width: 85%;
-                max-width: 380px;
+                width: 80%;
+                max-width: 420px;
                 height: auto;
                 display: block;
                 filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.6));
             }
 
             .logo-title {
-                font-size: 3rem;
+                font-size: 3.5rem;
                 margin-top: 0;
             }
 
             .accent-line {
-                width: 60px;
-                height: 4px;
-                margin-bottom: 2rem;
+                width: 70px;
+                height: 5px;
+                margin-bottom: 2.5rem;
             }
 
             #response {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
                 line-height: 1.4;
             }
 
             .input-bar {
-                padding: 1rem;
-                border-radius: 25px;
-                gap: 1.2rem;
+                padding: 1.2rem;
+                border-radius: 28px;
+                gap: 1.5rem;
             }
 
             .mic-btn {
-                width: 55px;
-                height: 55px;
+                width: 60px;
+                height: 60px;
             }
 
-            .main-footer {
-                font-size: 0.7rem;
-                opacity: 0.6;
-                bottom: 20px;
-                letter-spacing: 3px;
-                left: 0;
-                width: 100%;
-                position: absolute;
-                color: var(--secondary-neon);
+            #send-btn {
+                font-size: 1rem;
             }
         }
 
