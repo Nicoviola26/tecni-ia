@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecni Neural Core | Munitech</title>
+    <title>Tecni Tablet Core | Munitech</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -347,45 +347,154 @@
 
         /* --- RESPONSIVE DESIGN --- */
 
-        /* TABLET VERSION (Side-by-Side optimized) */
-        @media (min-width: 651px) and (max-width: 1180px) {
+        /* TABLET PORTRAIT (Full Space for Robot) */
+        @media (min-width: 651px) and (max-width: 950px) {
             .main-wrapper {
-                grid-template-columns: 1fr 1.2fr;
-                gap: 1.5rem;
-                padding: 1.5rem;
+                grid-template-columns: 1fr;
+                grid-template-rows: 38vh 1fr;
+                gap: 1.2rem;
+                padding: 1.2rem;
                 height: 100vh;
+                overflow: hidden;
+                background: radial-gradient(circle at center, #0a102e 0%, #02030a 100%);
+            }
+
+            .stage-side,
+            .interface-side {
+                height: 100%;
+                display: flex;
+                width: 100%;
+            }
+
+            .interface-side {
+                flex-direction: column;
+            }
+
+            .stage-side .neural-card {
+                overflow: visible;
+                padding: 1.5rem;
             }
 
             .neural-card {
-                padding: 2rem;
-                border-radius: 35px;
+                padding: 2.2rem;
+                border-radius: 30px;
+                box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8);
             }
 
             .svg-robot {
-                max-width: 220px;
-                height: auto;
+                height: 90%;
+                width: auto;
+                max-width: 250px;
+                filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
             }
 
             .logo-title {
-                font-size: 2.2rem;
-                margin-top: 0.5rem;
+                font-size: 2.4rem;
+                margin-top: 0;
+            }
+
+            .accent-line {
+                width: 45px;
+                height: 3px;
+                margin-bottom: 1.2rem;
             }
 
             #response {
-                font-size: 1.2rem;
+                font-size: 1.35rem;
+                line-height: 1.4;
             }
 
             .input-bar {
-                padding: 0.5rem;
+                padding: 0.8rem;
+                border-radius: 20px;
+            }
+
+            .mic-btn {
+                width: 50px;
+                height: 50px;
             }
 
             .main-footer {
-                font-size: 0.55rem;
+                font-size: 0.6rem;
                 opacity: 0.4;
-                bottom: 15px;
-                left: 0;
-                width: 100%;
+                bottom: 10px;
                 position: absolute;
+                width: 100%;
+                text-align: center;
+                letter-spacing: 2px;
+            }
+        }
+
+        /* DESKTOP & TABLET LANDSCAPE (Cinematic Side-by-Side) */
+        @media (min-width: 951px) {
+            .main-wrapper {
+                grid-template-columns: 42fr 58fr;
+                gap: 3rem;
+                padding: 3rem 4rem;
+                height: 100vh;
+                align-items: center;
+                background: radial-gradient(circle at center, #0a102e 0%, #02030a 100%);
+            }
+
+            .stage-side,
+            .interface-side {
+                height: 82vh;
+                display: flex;
+                width: 100%;
+            }
+
+            .stage-side .neural-card {
+                overflow: visible;
+            }
+
+            .neural-card {
+                padding: 3rem;
+                border-radius: 50px;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                box-shadow: 0 50px 150px -40px rgba(0, 0, 0, 0.9);
+            }
+
+            .svg-robot {
+                width: 80%;
+                max-width: 420px;
+                height: auto;
+                display: block;
+                filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.6));
+            }
+
+            .logo-title {
+                font-size: 3.5rem;
+                margin-top: 0;
+            }
+
+            .accent-line {
+                width: 70px;
+                height: 5px;
+                margin-bottom: 2.5rem;
+            }
+
+            #response {
+                font-size: 1.8rem;
+                line-height: 1.4;
+            }
+
+            .input-bar {
+                padding: 1.2rem;
+                border-radius: 28px;
+                gap: 1.5rem;
+            }
+
+            .mic-btn {
+                width: 60px;
+                height: 60px;
+            }
+
+            #send-btn {
+                font-size: 1rem;
             }
         }
 
@@ -632,7 +741,7 @@
     </div>
 
     <footer class="main-footer">
-        MUNICIPALIDAD DE SANTA FE • INTERFAZ COGNITIVA v4.2
+        MUNICIPALIDAD DE SANTA FE • INTERFAZ TABLET PRO v2.0
     </footer>
 
     <script>
