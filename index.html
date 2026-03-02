@@ -110,7 +110,6 @@
             box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 1);
             display: flex;
             flex-direction: column;
-            gap: 1rem;
             width: 100%;
             height: 100%;
             overflow: hidden;
@@ -123,7 +122,7 @@
             font-weight: 800;
             letter-spacing: -2px;
             color: #ffffff;
-            margin-top: 2rem;
+            margin-top: 0;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: baseline;
@@ -134,6 +133,7 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
             animation: title-entrance 1.5s ease-out;
+            flex-shrink: 0;
         }
 
         .dots-container {
@@ -186,7 +186,8 @@
             height: 3px;
             background: var(--primary-neon);
             border-radius: 2px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            flex-shrink: 0;
         }
 
         .bot-eyes {
@@ -208,38 +209,57 @@
         }
 
         .display-area {
-            min-height: 180px;
+            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: flex-start;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding-right: 10px;
+            min-height: 0;
+            /* Vital para que el scroll funcione en flex */
+        }
+
+        /* Scrollbar estilizada */
+        .display-area::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .display-area::-webkit-scrollbar-thumb {
+            background: var(--primary-neon);
+            border-radius: 10px;
         }
 
         #response {
             font-size: 1.5rem;
             font-weight: 600;
-            line-height: 1.3;
+            line-height: 1.4;
             letter-spacing: -0.5px;
             background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            padding-bottom: 2rem;
+            /* Espacio al final del texto */
         }
 
         #transcription {
             font-size: 0.7rem;
             letter-spacing: 2px;
             color: var(--secondary-neon);
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.8rem;
             text-transform: uppercase;
             font-weight: 800;
             opacity: 0.7;
+            flex-shrink: 0;
         }
 
         .control-hub {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            margin-top: 0.5rem;
+            margin-top: auto;
+            flex-shrink: 0;
         }
 
         .input-bar {
@@ -454,7 +474,7 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                justify-content: flex-start;
                 box-shadow: 0 50px 150px -40px rgba(0, 0, 0, 0.9);
             }
 
@@ -741,7 +761,7 @@
     </div>
 
     <footer class="main-footer">
-        MUNICIPALIDAD DE SANTA FE • INTERFAZ TABLET PRO v2.0
+        MUNICIPALIDAD DE SANTA FE • INTERFAZ TABLET PRO v2.1
     </footer>
 
     <script>
@@ -761,7 +781,7 @@
             const messages = [
                 {
                     role: "system",
-                    content: "Sos Tecni, de Munitech Santa Fe Capital. REGLAS: 1. NO uses insultos ni malas palabras bajo ningún concepto. 2. NO digas 'che' ni 'boludo', hablá de forma educada pero cercana. 3. Enfocate en Santa Fe Capital: si te preguntan por 'el faro', asumí siempre que hablan del Faro de la Costanera de Santa Fe. 4. Si el usuario insulta, respondé educadamente que no podés hablar en esos términos. Breve (2 oraciones), voseo santafesino correcto."
+                    content: "Sos Tecni, de Munitech Santa Fe Capital. REGLAS: 1. Hablá con un tono cálido, humano y muy servicial. 2. NO uses insultos ni malas palabras bajo ningún concepto. 3. NO digas 'che' ni 'boludo', hablá de forma educada pero cercana. 4. Enfocate en Santa Fe Capital (ej: el Faro de la Costanera). 5. Si el usuario insulta, respondé educadamente que no podés hablar en esos términos. Breve (2 oraciones), voseo santafesino correcto."
                 },
                 ...chatHistory,
                 { role: "user", content: prompt }
@@ -812,7 +832,19 @@
         function speak(text) {
             window.speechSynthesis.cancel();
             const ut = new SpeechSynthesisUtterance(text);
+
+            const voices = window.speechSynthesis.getVoices();
+            // Priorizamos voces en español de Argentina, luego naturales o de Google
+            const bestVoice = voices.find(v => v.lang === 'es-AR') ||
+                voices.find(v => v.lang.startsWith('es') && (v.name.includes('Google') || v.name.includes('Natural'))) ||
+                voices.find(v => v.lang.startsWith('es'));
+
+            if (bestVoice) ut.voice = bestVoice;
+
             ut.lang = 'es-AR';
+            ut.pitch = 1.0; // Normal
+            ut.rate = 1.0;  // Normal
+
             ut.onstart = () => {
                 isSpeaking = true;
                 visualizer.style.display = 'flex';
@@ -824,6 +856,11 @@
             };
             window.speechSynthesis.speak(ut);
         }
+
+        // Aseguramos que las voces se carguen (algunos navegadores las cargan asíncronamente)
+        window.speechSynthesis.onvoiceschanged = () => {
+            window.speechSynthesis.getVoices();
+        };
 
         document.getElementById('send-btn').onclick = () => {
             if (textIn.value) { processInput(textIn.value); textIn.value = ''; }
